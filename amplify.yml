@@ -1,0 +1,26 @@
+version: 1
+env:
+  variables:
+    CI: true
+backend:
+  phases:
+    preBuild:
+      commands:
+        - pnpm config set store-dir ./.pnpm-store
+    build:
+      commands:
+        - pnpm install
+        - pnpm --filter vanity-usernames-backend exec amplify pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+frontend:
+  phases:
+    build:
+      commands:
+        - pnpm --filter ./apps/vite-react build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - ./.pnpm-store
+  buildPath: /apps/vite-react
