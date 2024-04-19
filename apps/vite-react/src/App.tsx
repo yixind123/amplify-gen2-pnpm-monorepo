@@ -1,9 +1,8 @@
 import { useAuthenticator } from "@aws-amplify/ui-react"
 import { Amplify } from "aws-amplify"
-import config from "vanity-usernames-backend/config"
 import { useUserProfile } from "./use-user-profile"
 
-Amplify.configure(config)
+Amplify.configure({})
 
 export default function App() {
   const { signOut } = useAuthenticator()
