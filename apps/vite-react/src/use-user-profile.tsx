@@ -1,11 +1,6 @@
 import type { PropsWithChildren } from "react"
 import { useState, createContext, useEffect, useContext } from "react"
 import { useAuthenticator } from "@aws-amplify/ui-react"
-import {
-  fetchAuthSession,
-  fetchUserAttributes,
-  getCurrentUser,
-} from "aws-amplify/auth"
 
 type UserProfile = {
   /**
@@ -34,14 +29,13 @@ async function fetchUserProfile(): Promise<UserProfile> {
   // const attributes = await fetchUserAttributes()
   // const user = await getCurrentUser()
   // console.log("got user", user)
-  console.log("got session", session)
   // return {
   //   id: attributes.sub,
   //   email: attributes.email,
   //   displayName: attributes.preferred_username,
   //   isVerified: attributes.email_verified,
   // }
-  return {}
+  return {} as any;
 }
 
 export function UserProfileProvider({ children }: PropsWithChildren<{}>) {
